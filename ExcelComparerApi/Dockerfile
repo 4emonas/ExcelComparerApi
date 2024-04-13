@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
-WORKDIR /app
+WORKDIR app
 COPY . .
-RUN dotnet publish ExcelComparerApi/ExcelComparerApi.csproj -o /app/published-app -c Release -r linux-arm64 --self-contained
+RUN dotnet publish ExcelComparerApi/ExcelComparerApi.csproj -c Release -o /publish --self-contained --runtime linux-x64
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
-WORKDIR /app
-COPY --from=build /app/published-app /app
+WORKDIR app
+COPY --from=build ./publish /app
 EXPOSE 80
-ENTRYPOINT [ "dotnet", "/app/ExcelComparerApi/ExcelComparerApi.dll" ]
+ENTRYPOINT [ "dotnet", "ExcelComparerApi.dll" ]
