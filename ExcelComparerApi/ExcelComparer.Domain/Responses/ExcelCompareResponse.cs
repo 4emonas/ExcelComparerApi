@@ -9,6 +9,8 @@ namespace ExcelComparer.Domain.Responses
 {
     public class ExcelCompareResponse
     {
+        public ExcelCompareResponse() { }
+
         public ExcelCompareResponse(CompareResponse result)
         {
             Result = result;

@@ -53,7 +53,7 @@ namespace ExcelComparer.Domain.CommandHandlers
                 }
             }
 
-            return null;
+            return Task.FromResult(new ExcelCompareResponse());
         }
     }
 }
